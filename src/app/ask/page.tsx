@@ -82,7 +82,7 @@ function AskPageInner() {
         throw new Error(
           isConfig
             ? "The AI service isn't configured yet. Set ANTHROPIC_API_KEY in your environment."
-            : `Server error (${res.status}). Please try again.`
+            : `Server error (${res.status}): ${body || "Please try again."}`
         );
       }
 
@@ -105,18 +105,26 @@ function AskPageInner() {
             const data = line.slice(6);
             if (data === "[DONE]") break;
             try {
-              const { text } = JSON.parse(data);
-              setMessages((prev) => {
-                const updated = [...prev];
-                const last = updated[updated.length - 1];
-                updated[updated.length - 1] = {
-                  ...last,
-                  content: last.content + text,
-                };
-                return updated;
-              });
-            } catch {
-              // ignore parse errors
+              const parsed = JSON.parse(data);
+              if (parsed.error) {
+                throw new Error(`API error: ${parsed.error}`);
+              }
+              if (parsed.text) {
+                setMessages((prev) => {
+                  const updated = [...prev];
+                  const last = updated[updated.length - 1];
+                  updated[updated.length - 1] = {
+                    ...last,
+                    content: last.content + parsed.text,
+                  };
+                  return updated;
+                });
+              }
+            } catch (parseErr) {
+              if (parseErr instanceof Error && parseErr.message.startsWith("API error:")) {
+                throw parseErr;
+              }
+              // ignore other parse errors
             }
           }
         }
