@@ -1,7 +1,8 @@
-import { DiabetesEvent, CareGuide } from "./types";
+import { DiabetesEvent, CareGuide, ChildProfile } from "./types";
 
 const EVENTS_KEY = "t1d_events";
 const GUIDE_KEY = "t1d_care_guide";
+const PROFILE_KEY = "t1d_child_profile";
 
 export function getEvents(): DiabetesEvent[] {
   if (typeof window === "undefined") return [];
@@ -36,6 +37,20 @@ export function getCareGuide(): CareGuide | null {
 
 export function saveCareGuide(guide: CareGuide): void {
   localStorage.setItem(GUIDE_KEY, JSON.stringify(guide));
+}
+
+export function getChildProfile(): ChildProfile | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveChildProfile(profile: ChildProfile): void {
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
 }
 
 export function generateId(): string {

@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageCircle, ClipboardList, BarChart2, BookOpen } from "lucide-react";
+import { Home, MessageCircle, ClipboardList, BarChart2, BookOpen } from "lucide-react";
 
 const nav = [
-  { href: "/ask", icon: MessageCircle, label: "Ask Why" },
-  { href: "/log", icon: ClipboardList, label: "Event Log" },
-  { href: "/insights", icon: BarChart2, label: "Insights" },
-  { href: "/guide", icon: BookOpen, label: "Care Guide" },
+  { href: "/",        icon: Home,          label: "Home" },
+  { href: "/ask",     icon: MessageCircle, label: "Ask Why" },
+  { href: "/log",     icon: ClipboardList, label: "Log" },
+  { href: "/insights",icon: BarChart2,     label: "Insights" },
+  { href: "/guide",   icon: BookOpen,      label: "Guide" },
 ];
 
 export default function BottomNav() {

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Send, RefreshCw, ChevronDown } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import Disclaimer from "@/components/Disclaimer";
@@ -18,16 +19,28 @@ const STARTER_PROMPTS = [
   "Why is blood sugar hard to control when my child is sick?",
 ];
 
-export default function AskPage() {
+function AskPageInner() {
+  const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const autoSentRef = useRef(false);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Auto-send pre-filled question from dashboard card links (?q=...)
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q && !autoSentRef.current) {
+      autoSentRef.current = true;
+      sendMessage(decodeURIComponent(q));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sendMessage = async (text: string) => {
     if (!text.trim() || isStreaming) return;
@@ -219,6 +232,14 @@ export default function AskPage() {
         </div>
       </div>
     </PageShell>
+  );
+}
+
+export default function AskPage() {
+  return (
+    <Suspense>
+      <AskPageInner />
+    </Suspense>
   );
 }
 

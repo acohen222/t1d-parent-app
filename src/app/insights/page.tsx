@@ -27,6 +27,9 @@ const CATEGORY_COLORS: Record<string, string> = {
   stress: "bg-purple-50 text-purple-700 border-purple-200",
   high_bg: "bg-amber-50 text-amber-700 border-amber-200",
   low_bg: "bg-rose-50 text-rose-700 border-rose-200",
+  low_treatment: "bg-pink-50 text-pink-700 border-pink-200",
+  site_change: "bg-sky-50 text-sky-700 border-sky-200",
+  medication: "bg-teal-50 text-teal-700 border-teal-200",
   general: "bg-stone-50 text-stone-700 border-stone-200",
 };
 
@@ -37,6 +40,9 @@ const CATEGORY_EMOJIS: Record<string, string> = {
   stress: "😰",
   high_bg: "📈",
   low_bg: "📉",
+  low_treatment: "🧃",
+  site_change: "💉",
+  medication: "💊",
   general: "💡",
 };
 
