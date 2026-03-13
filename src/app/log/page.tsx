@@ -15,6 +15,7 @@ const CATEGORIES: { value: EventCategory; label: string; emoji: string; color: s
   { value: "medication", label: "Medication", emoji: "💊", color: "bg-teal-50 text-teal-700 border-teal-200" },
   { value: "high_bg", label: "High BG", emoji: "📈", color: "bg-amber-50 text-amber-700 border-amber-200" },
   { value: "low_bg", label: "Low BG", emoji: "📉", color: "bg-rose-50 text-rose-700 border-rose-200" },
+  { value: "low_treatment", label: "Low Treatment", emoji: "🧃", color: "bg-pink-50 text-pink-700 border-pink-200" },
   { value: "other", label: "Other", emoji: "📝", color: "bg-stone-50 text-stone-700 border-stone-200" },
 ];
 
