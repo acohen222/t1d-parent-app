@@ -1,7 +1,19 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 
-const client = new Anthropic();
+// Lazy-initialized to surface a clear error if ANTHROPIC_API_KEY is missing
+let _client: Anthropic | null = null;
+function getClient(): Anthropic {
+  if (!_client) {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error(
+        "ANTHROPIC_API_KEY environment variable is not set. Add it to .env.local for local development."
+      );
+    }
+    _client = new Anthropic();
+  }
+  return _client;
+}
 
 const SYSTEM_PROMPT = `You are T1D Parent Copilot — a calm, warm, and supportive companion for parents managing a child's Type 1 Diabetes.
 
@@ -39,6 +51,7 @@ export async function POST(req: NextRequest) {
       return new Response("Invalid request", { status: 400 });
     }
 
+    const client = getClient();
     const stream = client.messages.stream({
       model: "claude-opus-4-6",
       max_tokens: 1024,
@@ -80,6 +93,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     console.error("Ask API error:", err);
-    return new Response("Internal Server Error", { status: 500 });
+    const message = err instanceof Error ? err.message : "Internal Server Error";
+    return new Response(message, { status: 500 });
   }
 }
