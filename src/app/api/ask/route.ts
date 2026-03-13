@@ -79,7 +79,11 @@ export async function POST(req: NextRequest) {
           controller.enqueue(encoder.encode("data: [DONE]\n\n"));
           controller.close();
         } catch (err) {
-          controller.error(err);
+          const msg = err instanceof Error ? err.message : "Stream error";
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify({ error: msg })}\n\n`)
+          );
+          controller.close();
         }
       },
     });
