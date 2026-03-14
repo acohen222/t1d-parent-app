@@ -8,11 +8,13 @@ import {
   TrendingUp, TrendingDown, ClipboardList, BarChart2,
   BookOpen, Settings, ChevronRight,
   Utensils, Dumbbell, Thermometer, Zap, AlertTriangle, Droplets,
+  Siren,
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
 import Card from "@/components/ui/Card";
 import { getChildProfile, getEvents, saveEvent, generateId } from "@/lib/storage";
 import { ChildProfile, EventCategory } from "@/lib/types";
+import { URGENT_GUIDES } from "@/lib/urgentGuides";
 
 // ─── Quick-log button config ─────────────────────────────────────
 interface QuickLog {
@@ -222,6 +224,66 @@ export default function DashboardPage() {
           <p className="text-[10px] text-[#5A8EB8] text-center mt-2" style={{ fontFamily: "var(--font-body)" }}>
             Tap to log instantly — add notes anytime in Event Log
           </p>
+        </section>
+
+        {/* ── Urgent Guides ─────────────────────────────────── */}
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center shrink-0 animate-pulse">
+              <Siren size={11} className="text-white" />
+            </div>
+            <p
+              className="text-xs font-semibold text-red-600 uppercase tracking-[2.5px]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Emergency Protocols
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5">
+            {(["low", "high", "ketones", "sick-day"] as const).map((key) => {
+              const guide = URGENT_GUIDES[key];
+              const IconMap: Record<string, React.ElementType> = {
+                low: Droplets,
+                high: TrendingUp,
+                ketones: AlertTriangle,
+                "sick-day": Thermometer,
+              };
+              const Icon = IconMap[key];
+              return (
+                <Link key={key} href={`/urgent/${key}`}>
+                  <div
+                    className="relative rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.15)] active:scale-[0.97] transition-transform duration-150 select-none"
+                    style={{ background: guide.gradient }}
+                  >
+                    {/* Glossy overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+
+                    <div className="relative z-10 p-4">
+                      <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center mb-3">
+                        <Icon size={18} className="text-white" />
+                      </div>
+                      <p
+                        className="font-extrabold text-white text-[15px] leading-tight"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {guide.shortTitle}
+                      </p>
+                      <p className="text-white/75 text-[10px] mt-0.5 leading-snug" style={{ fontFamily: "var(--font-body)" }}>
+                        {guide.tagline}
+                      </p>
+                      <div className="mt-3 flex items-center gap-1">
+                        <span className="text-white/90 text-[10px] font-semibold" style={{ fontFamily: "var(--font-body)" }}>
+                          View steps
+                        </span>
+                        <ChevronRight size={11} className="text-white/90" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </section>
 
         {/* ── Action cards ──────────────────────────────────── */}
