@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   TrendingUp, TrendingDown, ClipboardList, BarChart2,
   BookOpen, Settings, ChevronRight,
@@ -124,16 +125,33 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Header */}
-      <header className="bg-[#1A5FA8] text-white px-5 pt-14 pb-6 safe-area-pt">
-        <div className="max-w-md mx-auto flex items-start justify-between">
+      <header
+        className="text-white px-5 pt-14 pb-6 safe-area-pt relative overflow-hidden"
+        style={{ background: "var(--gradient-hero)" }}
+      >
+        {/* Decorative blobs */}
+        <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 -left-6 w-28 h-28 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #56CCF2 0%, transparent 70%)" }} />
+
+        <div className="max-w-md mx-auto flex items-start justify-between relative z-10">
           <div>
-            <div className="flex items-center gap-1.5 mb-1">
+            <div className="flex items-center gap-2 mb-2">
+              {/* Logo */}
+              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-md overflow-hidden">
+                <Image
+                  src="/sugarwise_logo.png"
+                  alt="SugarWise"
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+              </div>
               {/* Brand wordmark */}
               <span
-                className="text-white/80 text-xs font-semibold tracking-[2px] uppercase"
-                style={{ fontFamily: "var(--font-body)", letterSpacing: "2.5px" }}
+                className="font-extrabold text-base tracking-tight"
+                style={{ fontFamily: "var(--font-display)" }}
               >
-                T1D Family Copilot
+                <span className="text-[#A8E6FF]">Sugar</span><span className="text-white">Wise</span>
               </span>
             </div>
             <h1
@@ -156,7 +174,7 @@ export default function DashboardPage() {
         </div>
 
         {recentCount > 0 && (
-          <div className="max-w-md mx-auto mt-4">
+          <div className="max-w-md mx-auto mt-4 relative z-10">
             <span className="inline-flex items-center gap-1.5 bg-white/15 text-white/90 text-xs rounded-full px-3 py-1" style={{ fontFamily: "var(--font-body)" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
               {recentCount} event{recentCount !== 1 ? "s" : ""} logged today

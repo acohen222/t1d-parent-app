@@ -25,12 +25,18 @@ export default function BottomNav() {
               key={href}
               href={href}
               style={{ fontFamily: "var(--font-body)" }}
-              className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 px-1 text-xs transition-colors ${
+              className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 px-1 text-xs transition-colors relative ${
                 active
                   ? "text-[#1A5FA8] font-semibold"
                   : "text-[#5A8EB8] hover:text-[#2E7FD4]"
               }`}
             >
+              {active && (
+                <span
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full"
+                  style={{ background: "var(--gradient-active)" }}
+                />
+              )}
               <Icon
                 size={22}
                 className={active ? "stroke-[2.2]" : "stroke-[1.5]"}

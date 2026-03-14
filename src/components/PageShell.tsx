@@ -11,7 +11,7 @@ export default function PageShell({ title, subtitle, children, headerRight }: Pa
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Header */}
-      <header className="bg-white border-b border-[#B8D4EE] px-4 pt-12 pb-4 safe-area-pt shadow-[0_2px_12px_rgba(26,95,168,0.06)]">
+      <header className="bg-white border-b border-[#B8D4EE] px-4 pt-12 pb-4 safe-area-pt shadow-[0_2px_12px_rgba(26,95,168,0.06)] relative">
         <div className="max-w-md mx-auto flex items-end justify-between">
           <div>
             <h1
@@ -28,6 +28,11 @@ export default function PageShell({ title, subtitle, children, headerRight }: Pa
           </div>
           {headerRight && <div>{headerRight}</div>}
         </div>
+        {/* Gradient accent bar */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-[3px]"
+          style={{ background: "var(--gradient-header)" }}
+        />
       </header>
 
       {/* Content */}

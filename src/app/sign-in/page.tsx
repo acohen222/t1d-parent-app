@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Heart, Shield, BookOpen, BarChart2 } from "lucide-react";
 import { getChildProfile } from "@/lib/storage";
 import Button from "@/components/ui/Button";
@@ -45,34 +46,49 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Hero */}
-      <div className="bg-[#1A5FA8] px-5 pt-16 pb-10 text-white">
-        <div className="max-w-md mx-auto">
-          <div className="flex items-center gap-2 mb-5">
-            <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
-              <Heart size={18} className="fill-white stroke-none" />
+      <div
+        className="px-5 pt-16 pb-14 text-white relative overflow-hidden"
+        style={{ background: "var(--gradient-hero)" }}
+      >
+        {/* Decorative blobs */}
+        <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
+        <div className="absolute top-1/2 -left-8 w-36 h-36 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #56CCF2 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-6 right-12 w-24 h-24 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #A8E6FF 0%, transparent 70%)" }} />
+
+        <div className="max-w-md mx-auto relative z-10">
+          {/* Logo centered */}
+          <div className="flex flex-col items-center mb-7">
+            <div className="w-24 h-24 rounded-2xl bg-white shadow-xl flex items-center justify-center overflow-hidden mb-3">
+              <Image
+                src="/sugarwise_logo.png"
+                alt="SugarWise"
+                width={96}
+                height={96}
+                className="object-contain"
+              />
             </div>
             <span
-              className="font-extrabold tracking-tight text-lg"
+              className="font-extrabold tracking-tight text-2xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              T1D Family Copilot
+              <span className="text-[#A8E6FF]">Sugar</span><span className="text-white">Wise</span>
             </span>
+            <p
+              className="text-white/60 text-[11px] uppercase tracking-[2.5px] mt-1"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              T1D Parent Companion App
+            </p>
           </div>
-          {/* Tagline eyebrow */}
-          <p
-            className="text-white/60 text-[11px] uppercase tracking-[2.5px] mb-3"
-            style={{ fontFamily: "var(--font-body)", letterSpacing: "2.5px" }}
-          >
-            Navigating T1D Together
-          </p>
+
           <h1
-            className="text-3xl font-extrabold leading-tight"
+            className="text-2xl font-extrabold leading-tight text-center"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Managing T1D is hard.<br />
             You don&apos;t have to do it alone.
           </h1>
-          <p className="mt-3 text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+          <p className="mt-3 text-white/80 text-sm leading-relaxed text-center" style={{ fontFamily: "var(--font-body)" }}>
             A warm, supportive companion for families navigating
             Type 1 Diabetes — one moment at a time.
           </p>
