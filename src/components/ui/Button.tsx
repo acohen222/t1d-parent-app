@@ -12,17 +12,18 @@ interface ButtonProps {
   icon?: ReactNode;
 }
 
+// All buttons use pill shape (border-radius: 50px) per brand guidelines
 const variantMap = {
-  primary:   "bg-[#4a7c59] text-white hover:bg-[#3d6b4a] disabled:opacity-40",
-  secondary: "bg-white text-[#4a7c59] border border-[#4a7c59] hover:bg-green-50 disabled:opacity-40",
-  ghost:     "bg-transparent text-stone-600 hover:bg-stone-100 disabled:opacity-40",
-  danger:    "bg-rose-500 text-white hover:bg-rose-600 disabled:opacity-40",
+  primary:   "bg-[#2E7FD4] text-white font-[800] hover:bg-[#1A5FA8] disabled:opacity-45 transition-colors",
+  secondary: "bg-transparent text-[#2E7FD4] border-2 border-[#2E7FD4] hover:bg-[#E8F2FB] disabled:opacity-45 transition-colors",
+  ghost:     "bg-[#E8F2FB] text-[#1A5FA8] font-[700] hover:bg-[#B8D4EE] disabled:opacity-45 transition-colors",
+  danger:    "bg-[#FDE8E8] text-[#A32D2D] hover:bg-[#fbd0d0] disabled:opacity-45 transition-colors",
 };
 
 const sizeMap = {
-  sm: "h-9  px-4 text-sm  rounded-xl gap-1.5",
-  md: "h-11 px-5 text-sm  rounded-xl gap-2",
-  lg: "h-14 px-6 text-base rounded-2xl gap-2.5 font-semibold",
+  sm: "h-9  px-[18px] text-sm  rounded-[50px] gap-1.5",
+  md: "h-11 px-6      text-sm  rounded-[50px] gap-2",
+  lg: "h-14 px-6      text-base rounded-[50px] gap-2.5",
 };
 
 export default function Button({
@@ -41,9 +42,10 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      style={{ fontFamily: "var(--font-display)" }}
       className={`
-        inline-flex items-center justify-center font-medium
-        transition-colors active:scale-[0.97]
+        inline-flex items-center justify-center font-semibold
+        transition-all active:scale-[0.97]
         ${variantMap[variant]}
         ${sizeMap[size]}
         ${fullWidth ? "w-full" : ""}

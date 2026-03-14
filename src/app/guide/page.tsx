@@ -75,7 +75,7 @@ function Section({
   return (
     <div className="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm mb-3">
       <button className="w-full flex items-center gap-3 px-4 py-3.5 text-left" onClick={onToggle}>
-        <Icon size={16} className="text-[#4a7c59] shrink-0" />
+        <Icon size={16} className="text-[#2E7FD4] shrink-0" />
         <span className="font-semibold text-stone-800 text-sm flex-1">{title}</span>
         <span className="text-stone-300 text-lg leading-none">{open ? "−" : "+"}</span>
       </button>
@@ -95,8 +95,8 @@ function Field({ label, children, required }: { label: string; children: React.R
   );
 }
 
-const INPUT = "w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#4a7c59] transition-colors";
-const TEXTAREA = "w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#4a7c59] transition-colors resize-none";
+const INPUT = "w-full border border-[#B8D4EE] rounded-lg px-3 py-2 text-sm focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all";
+const TEXTAREA = "w-full border border-[#B8D4EE] rounded-lg px-3 py-2 text-sm focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all resize-none";
 
 export default function GuidePage() {
   const [guide, setGuide] = useState<CareGuide>(EMPTY_GUIDE);
@@ -166,7 +166,7 @@ export default function GuidePage() {
             <p className="text-sm font-medium text-stone-500">No guide set up yet</p>
             <button
               onClick={() => setEditing(true)}
-              className="mt-4 bg-[#4a7c59] text-white text-sm font-semibold rounded-2xl px-6 py-3"
+              className="mt-4 bg-[#2E7FD4] text-white text-sm font-bold rounded-[50px] px-6 py-3 hover:bg-[#1A5FA8] transition-colors"
             >
               Create Care Guide
             </button>
@@ -183,7 +183,7 @@ export default function GuidePage() {
         {hasGuide && !editing && (
           <div className="mt-4 print:mt-0">
             {/* Child info card */}
-            <div className="bg-[#4a7c59] text-white rounded-2xl p-4 mb-4 print:bg-white print:text-black print:border print:border-black">
+            <div className="bg-[#1A5FA8] text-white rounded-xl p-4 mb-4 print:bg-white print:text-black print:border print:border-black">
               <p className="text-white/70 text-xs mb-0.5 print:text-gray-600">Child&apos;s name</p>
               <p className="text-xl font-bold">{guide.childName}</p>
               {guide.diagnosisDate && (
@@ -210,7 +210,7 @@ export default function GuidePage() {
             {/* Emergency contacts */}
             <div className="bg-white border border-stone-100 rounded-2xl p-4 mb-3 shadow-sm">
               <div className="flex items-center gap-2 mb-3">
-                <Phone size={14} className="text-[#4a7c59]" />
+                <Phone size={14} className="text-[#2E7FD4]" />
                 <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">Emergency Contacts</p>
               </div>
               {guide.emergencyContact1Name && (
@@ -219,7 +219,7 @@ export default function GuidePage() {
                     <p className="text-sm font-medium text-stone-800">{guide.emergencyContact1Name}</p>
                     <p className="text-xs text-stone-400">{guide.emergencyContact1Rel || "Primary"}</p>
                   </div>
-                  <a href={`tel:${guide.emergencyContact1Phone}`} className="text-[#4a7c59] font-semibold text-sm">
+                  <a href={`tel:${guide.emergencyContact1Phone}`} className="text-[#2E7FD4] font-semibold text-sm">
                     {guide.emergencyContact1Phone}
                   </a>
                 </div>
@@ -230,7 +230,7 @@ export default function GuidePage() {
                     <p className="text-sm font-medium text-stone-800">{guide.emergencyContact2Name}</p>
                     <p className="text-xs text-stone-400">{guide.emergencyContact2Rel || "Secondary"}</p>
                   </div>
-                  <a href={`tel:${guide.emergencyContact2Phone}`} className="text-[#4a7c59] font-semibold text-sm">
+                  <a href={`tel:${guide.emergencyContact2Phone}`} className="text-[#2E7FD4] font-semibold text-sm">
                     {guide.emergencyContact2Phone}
                   </a>
                 </div>
@@ -241,7 +241,7 @@ export default function GuidePage() {
                     <p className="text-sm font-medium text-stone-800">{guide.doctorName}</p>
                     <p className="text-xs text-stone-400">Diabetes Care Team</p>
                   </div>
-                  <a href={`tel:${guide.doctorPhone}`} className="text-[#4a7c59] font-semibold text-sm">
+                  <a href={`tel:${guide.doctorPhone}`} className="text-[#2E7FD4] font-semibold text-sm">
                     {guide.doctorPhone}
                   </a>
                 </div>
@@ -422,7 +422,7 @@ export default function GuidePage() {
             <button
               onClick={handleSave}
               disabled={!draft.childName.trim()}
-              className="w-full flex items-center justify-center gap-2 bg-[#4a7c59] text-white font-semibold rounded-2xl py-4 text-sm mt-2 disabled:opacity-40"
+              className="w-full flex items-center justify-center gap-2 bg-[#2E7FD4] text-white font-bold rounded-[50px] py-4 text-sm mt-2 disabled:opacity-45 hover:bg-[#1A5FA8] transition-colors"
             >
               <Save size={16} />
               Save Care Guide

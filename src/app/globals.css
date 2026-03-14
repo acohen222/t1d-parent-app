@@ -1,8 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #f8f7f4;
-  --foreground: #2d3748;
+  /* ── T1D Family Copilot Brand Palette ── */
+  --color-midnight:    #1A3A5C;
+  --color-t1d-blue:    #1A5FA8;
+  --color-dexcom-blue: #2E7FD4;
+  --color-sky:         #5BA8E8;
+  --color-mist:        #B8D4EE;
+  --color-frost:       #E8F2FB;
+  --color-body-text:   #2D4A63;
+  --color-muted:       #5A8EB8;
+
+  /* Glucose status */
+  --glucose-in-range-bg:   #E8F2FB;  --glucose-in-range-text:  #1A5FA8;
+  --glucose-low-bg:        #FEF3E2;  --glucose-low-text:       #B85420;
+  --glucose-urgent-bg:     #FDE8E8;  --glucose-urgent-text:    #A32D2D;
+  --glucose-high-bg:       #FEF0E6;  --glucose-high-text:      #B85420;
+
+  /* Typography */
+  --font-display: "Nunito", system-ui, sans-serif;
+  --font-body:    "Inter",  system-ui, sans-serif;
+
+  /* Aliases for Tailwind @theme */
+  --background: var(--color-frost);
+  --foreground: var(--color-body-text);
 }
 
 @theme inline {
@@ -13,8 +35,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
 }
 
 html {
@@ -30,6 +56,40 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
+  background: var(--color-mist);
   border-radius: 2px;
+}
+
+/* ── Animations ── */
+
+/* Urgent-low badge pulse */
+@keyframes urgent-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+/* Success pop */
+@keyframes success-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-urgent-pulse {
+    animation: urgent-pulse 1.5s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, var(--color-frost) 25%, var(--color-mist) 50%, var(--color-frost) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s linear infinite;
+  }
+  .animate-success-pop {
+    animation: success-pop 250ms ease-out both;
+  }
 }

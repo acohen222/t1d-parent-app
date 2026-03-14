@@ -63,7 +63,7 @@ function EventCountBar({ events }: { events: DiabetesEvent[] }) {
   const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
 
   return (
-    <div className="bg-white border border-stone-100 rounded-2xl p-4 mb-4 shadow-sm">
+    <div className="bg-white border border-[#B8D4EE] rounded-xl p-4 mb-4 shadow-[0_2px_12px_rgba(26,95,168,0.08)]">
       <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
         This week&apos;s events ({total} total)
       </p>
@@ -73,7 +73,7 @@ function EventCountBar({ events }: { events: DiabetesEvent[] }) {
             <span className="text-sm w-5 text-center">{CATEGORY_EMOJIS[cat] ?? "📝"}</span>
             <div className="flex-1 bg-stone-100 rounded-full h-2 overflow-hidden">
               <div
-                className="h-full bg-[#4a7c59] rounded-full transition-all"
+                className="h-full bg-[#2E7FD4] rounded-full transition-all"
                 style={{ width: `${(count / total) * 100}%` }}
               />
             </div>
@@ -133,7 +133,7 @@ export default function InsightsPage() {
           <button
             onClick={generateInsights}
             disabled={loading}
-            className="w-full mt-2 flex items-center justify-center gap-2 bg-[#4a7c59] text-white font-semibold rounded-2xl py-4 text-sm disabled:opacity-50 transition-opacity"
+            className="w-full mt-2 flex items-center justify-center gap-2 bg-[#2E7FD4] text-white font-bold rounded-[50px] py-4 text-sm disabled:opacity-45 hover:bg-[#1A5FA8] transition-colors"
           >
             {loading ? (
               <>
@@ -157,7 +157,7 @@ export default function InsightsPage() {
         {insights && (
           <div className="mt-5 flex flex-col gap-4">
             {/* Summary */}
-            <div className="bg-[#4a7c59] text-white rounded-2xl p-4">
+            <div className="bg-[#1A5FA8] text-white rounded-xl p-4">
               <p className="text-sm leading-relaxed">{insights.summary}</p>
             </div>
 
@@ -174,7 +174,7 @@ export default function InsightsPage() {
                     return (
                       <div
                         key={i}
-                        className="bg-white border border-stone-100 rounded-2xl p-4 shadow-sm"
+                        className="bg-white border border-[#B8D4EE] rounded-xl p-4 shadow-[0_2px_12px_rgba(26,95,168,0.08)]"
                       >
                         <div className="flex items-start gap-2">
                           <span className="text-lg mt-0.5">{emoji}</span>
@@ -206,13 +206,13 @@ export default function InsightsPage() {
                     Questions for your care team
                   </p>
                 </div>
-                <div className="bg-white border border-stone-100 rounded-2xl p-4 shadow-sm">
+                <div className="bg-white border border-[#B8D4EE] rounded-xl p-4 shadow-[0_2px_12px_rgba(26,95,168,0.08)]">
                   <ul className="flex flex-col gap-2">
                     {insights.questions.map((q, i) => (
                       <li key={i} className="flex gap-2 text-sm text-stone-700">
                         <MessageCircle
                           size={14}
-                          className="text-[#4a7c59] shrink-0 mt-0.5"
+                          className="text-[#2E7FD4] shrink-0 mt-0.5"
                         />
                         <span>{q}</span>
                       </li>

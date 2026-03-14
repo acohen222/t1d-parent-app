@@ -9,14 +9,21 @@ interface PageShellProps {
 
 export default function PageShell({ title, subtitle, children, headerRight }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-[#f8f7f4] flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Header */}
-      <header className="bg-white border-b border-stone-100 px-4 pt-12 pb-4 safe-area-pt">
+      <header className="bg-white border-b border-[#B8D4EE] px-4 pt-12 pb-4 safe-area-pt shadow-[0_2px_12px_rgba(26,95,168,0.06)]">
         <div className="max-w-md mx-auto flex items-end justify-between">
           <div>
-            <h1 className="text-xl font-bold text-stone-800">{title}</h1>
+            <h1
+              className="text-xl font-extrabold text-[#1A3A5C]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {title}
+            </h1>
             {subtitle && (
-              <p className="text-sm text-stone-500 mt-0.5">{subtitle}</p>
+              <p className="text-sm text-[#5A8EB8] mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
+                {subtitle}
+              </p>
             )}
           </div>
           {headerRight && <div>{headerRight}</div>}

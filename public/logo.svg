@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="#1A5FA8"/>
+  <!-- Drop of glucose / heart hybrid shape in white -->
+  <path d="M100 140 C60 115 48 90 48 78 C48 62 62 52 78 56 C86 58 93 64 100 72 C107 64 114 58 122 56 C138 52 152 62 152 78 C152 90 140 115 100 140Z" fill="white" opacity="0.95"/>
+  <!-- Small crosshair / plus for medical care -->
+  <rect x="95" y="80" width="10" height="30" rx="3" fill="#1A5FA8"/>
+  <rect x="85" y="90" width="30" height="10" rx="3" fill="#1A5FA8"/>
+</svg>

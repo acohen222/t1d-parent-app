@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   TrendingUp, TrendingDown, ClipboardList, BarChart2,
-  BookOpen, Settings, Heart, ChevronRight,
+  BookOpen, Settings, ChevronRight,
   Utensils, Dumbbell, Thermometer, Zap, AlertTriangle, Droplets,
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
@@ -26,7 +26,7 @@ const QUICK_LOGS: QuickLog[] = [
   { category: "meal",          label: "Meal",     icon: Utensils,      color: "bg-orange-50 text-orange-600",  ringColor: "ring-orange-300" },
   { category: "exercise",      label: "Exercise", icon: Dumbbell,      color: "bg-blue-50 text-blue-600",      ringColor: "ring-blue-300" },
   { category: "illness",       label: "Illness",  icon: Thermometer,   color: "bg-red-50 text-red-600",        ringColor: "ring-red-300" },
-  { category: "site_change",   label: "Site",     icon: Zap,           color: "bg-sky-50 text-sky-600",        ringColor: "ring-sky-300" },
+  { category: "site_change",   label: "Site",     icon: Zap,           color: "bg-[#E8F2FB] text-[#2E7FD4]",  ringColor: "ring-[#5BA8E8]" },
   { category: "stress",        label: "Stress",   icon: AlertTriangle, color: "bg-violet-50 text-violet-600",  ringColor: "ring-violet-300" },
   { category: "low_treatment", label: "Low Tx",   icon: Droplets,      color: "bg-rose-50 text-rose-600",      ringColor: "ring-rose-300" },
 ];
@@ -54,9 +54,9 @@ const ACTION_CARDS = [
   {
     href: "/log",
     icon: ClipboardList,
-    accent: "green" as const,
-    iconColor: "text-[#4a7c59]",
-    iconBg: "bg-emerald-50",
+    accent: "brand" as const,
+    iconColor: "text-[#1A5FA8]",
+    iconBg: "bg-[#E8F2FB]",
     title: "Log event",
     desc: "Record a meal, exercise, illness, or site change",
   },
@@ -64,8 +64,8 @@ const ACTION_CARDS = [
     href: "/insights",
     icon: BarChart2,
     accent: "blue" as const,
-    iconColor: "text-sky-500",
-    iconBg: "bg-sky-50",
+    iconColor: "text-[#2E7FD4]",
+    iconBg: "bg-[#E8F2FB]",
     title: "View patterns",
     desc: "Weekly insights from your event log",
   },
@@ -119,23 +119,32 @@ export default function DashboardPage() {
     return "Good evening";
   })();
 
-  // Show nothing while checking profile (avoids flash)
   if (!profile) return null;
 
   return (
-    <div className="min-h-screen bg-[#f8f7f4] flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Header */}
-      <header className="bg-[#4a7c59] text-white px-5 pt-14 pb-6 safe-area-pt">
+      <header className="bg-[#1A5FA8] text-white px-5 pt-14 pb-6 safe-area-pt">
         <div className="max-w-md mx-auto flex items-start justify-between">
           <div>
             <div className="flex items-center gap-1.5 mb-1">
-              <Heart size={14} className="fill-white/70 stroke-none" />
-              <span className="text-white/70 text-xs font-medium tracking-wide">T1D Parent Copilot</span>
+              {/* Brand wordmark */}
+              <span
+                className="text-white/80 text-xs font-semibold tracking-[2px] uppercase"
+                style={{ fontFamily: "var(--font-body)", letterSpacing: "2.5px" }}
+              >
+                T1D Family Copilot
+              </span>
             </div>
-            <h1 className="text-xl font-bold leading-snug">
+            <h1
+              className="text-xl font-extrabold leading-snug"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               {greeting}{profile.name ? `, ${profile.name}'s family` : ""}.
             </h1>
-            <p className="text-white/75 text-sm mt-0.5">You&apos;re doing great — one moment at a time.</p>
+            <p className="text-white/75 text-sm mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
+              You&apos;re doing great — one moment at a time.
+            </p>
           </div>
           <Link
             href="/profile/setup"
@@ -148,7 +157,7 @@ export default function DashboardPage() {
 
         {recentCount > 0 && (
           <div className="max-w-md mx-auto mt-4">
-            <span className="inline-flex items-center gap-1.5 bg-white/15 text-white/90 text-xs rounded-full px-3 py-1">
+            <span className="inline-flex items-center gap-1.5 bg-white/15 text-white/90 text-xs rounded-full px-3 py-1" style={{ fontFamily: "var(--font-body)" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
               {recentCount} event{recentCount !== 1 ? "s" : ""} logged today
             </span>
@@ -160,7 +169,10 @@ export default function DashboardPage() {
 
         {/* ── Quick-log strip ─────────────────────────────────── */}
         <section>
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
+          <p
+            className="text-xs font-semibold text-[#5A8EB8] uppercase tracking-[2.5px] mb-3"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
             Quick log
           </p>
           <div className="grid grid-cols-3 gap-2.5">
@@ -171,10 +183,10 @@ export default function DashboardPage() {
                   key={category}
                   onClick={() => handleQuickLog(category)}
                   className={`
-                    flex flex-col items-center gap-1.5 py-4 rounded-2xl border transition-all active:scale-95
+                    flex flex-col items-center gap-1.5 py-4 rounded-xl border transition-all active:scale-95
                     ${active
-                      ? `${color} ring-2 ${ringColor} border-transparent shadow-md`
-                      : "bg-white border-stone-100 shadow-sm"
+                      ? `${color} ring-2 ${ringColor} border-transparent shadow-[0_4px_20px_rgba(26,95,168,0.12)]`
+                      : "bg-white border-[#B8D4EE] shadow-[0_2px_12px_rgba(26,95,168,0.08)]"
                     }
                   `}
                   aria-label={`Quick log ${label}`}
@@ -182,22 +194,25 @@ export default function DashboardPage() {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${color}`}>
                     <Icon size={19} />
                   </div>
-                  <span className="text-xs font-medium text-stone-700">{label}</span>
+                  <span className="text-xs font-medium text-[#2D4A63]" style={{ fontFamily: "var(--font-body)" }}>{label}</span>
                   {active && (
-                    <span className="text-[10px] text-stone-500 -mt-0.5">Logged ✓</span>
+                    <span className="text-[10px] text-[#5A8EB8] -mt-0.5">Logged ✓</span>
                   )}
                 </button>
               );
             })}
           </div>
-          <p className="text-[10px] text-stone-400 text-center mt-2">
+          <p className="text-[10px] text-[#5A8EB8] text-center mt-2" style={{ fontFamily: "var(--font-body)" }}>
             Tap to log instantly — add notes anytime in Event Log
           </p>
         </section>
 
         {/* ── Action cards ──────────────────────────────────── */}
         <section>
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
+          <p
+            className="text-xs font-semibold text-[#5A8EB8] uppercase tracking-[2.5px] mb-3"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
             What do you need right now?
           </p>
           <div className="flex flex-col gap-2.5">
@@ -209,10 +224,15 @@ export default function DashboardPage() {
                       <Icon size={19} className={iconColor} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-stone-800 text-sm">{title}</p>
-                      <p className="text-xs text-stone-500 mt-0.5 leading-snug">{desc}</p>
+                      <p
+                        className="font-bold text-[#1A3A5C] text-sm"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {title}
+                      </p>
+                      <p className="text-xs text-[#5A8EB8] mt-0.5 leading-snug" style={{ fontFamily: "var(--font-body)" }}>{desc}</p>
                     </div>
-                    <ChevronRight size={16} className="text-stone-300 shrink-0" />
+                    <ChevronRight size={16} className="text-[#B8D4EE] shrink-0" />
                   </div>
                 </Card>
               </Link>
@@ -221,7 +241,7 @@ export default function DashboardPage() {
         </section>
 
         {/* ── Disclaimer ──────────────────────────────────── */}
-        <p className="text-center text-[11px] text-stone-400 leading-relaxed px-4 pb-2">
+        <p className="text-center text-[11px] text-[#5A8EB8] leading-relaxed px-4 pb-2" style={{ fontFamily: "var(--font-body)" }}>
           Informational only — not a substitute for medical advice.<br />
           Always consult your diabetes care team.
         </p>

@@ -219,7 +219,7 @@ function AskPageInner() {
                 <button
                   key={prompt}
                   onClick={() => sendMessage(prompt)}
-                  className="text-left text-sm bg-white border border-stone-200 rounded-xl px-4 py-3 text-stone-700 hover:border-[#4a7c59] hover:text-[#4a7c59] transition-colors active:scale-[0.98]"
+                  className="text-left text-sm bg-white border border-[#B8D4EE] rounded-xl px-4 py-3 text-[#2D4A63] hover:border-[#2E7FD4] hover:text-[#1A5FA8] transition-colors active:scale-[0.98] shadow-[0_2px_12px_rgba(26,95,168,0.06)]"
                 >
                   {prompt}
                 </button>
@@ -240,11 +240,11 @@ function AskPageInner() {
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "user" ? (
-                  <div className="max-w-[80%] bg-[#4a7c59] text-white rounded-2xl rounded-br-sm px-4 py-3 text-sm leading-relaxed">
+                  <div className="max-w-[80%] bg-[#1A5FA8] text-white rounded-2xl rounded-br-sm px-4 py-3 text-sm leading-relaxed">
                     {msg.content}
                   </div>
                 ) : (
-                  <div className="max-w-[90%] bg-white border border-stone-100 rounded-2xl rounded-bl-sm px-4 py-3 text-sm leading-relaxed text-stone-800 shadow-sm">
+                  <div className="max-w-[90%] bg-white border border-[#B8D4EE] rounded-2xl rounded-bl-sm px-4 py-3 text-sm leading-relaxed text-[#2D4A63] shadow-[0_2px_12px_rgba(26,95,168,0.08)]">
                     {msg.content === "" && isStreaming ? (
                       <span className="inline-flex gap-1 items-center text-stone-400">
                         <span className="w-1.5 h-1.5 bg-stone-300 rounded-full animate-bounce [animation-delay:0ms]" />
@@ -263,7 +263,7 @@ function AskPageInner() {
         )}
 
         {/* Input */}
-        <div className="sticky bottom-20 px-4 pb-2 pt-3 bg-[#f8f7f4]">
+        <div className="sticky bottom-20 px-4 pb-2 pt-3" style={{ background: "var(--color-frost)" }}>
           <form onSubmit={handleSubmit} className="flex gap-2 items-end">
             <textarea
               ref={textareaRef}
@@ -272,7 +272,7 @@ function AskPageInner() {
               onKeyDown={handleKeyDown}
               placeholder="Ask about a blood sugar pattern..."
               rows={1}
-              className="flex-1 resize-none bg-white border border-stone-200 rounded-2xl px-4 py-3 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-[#4a7c59] transition-colors leading-relaxed overflow-hidden"
+              className="flex-1 resize-none bg-white border border-[#B8D4EE] rounded-2xl px-4 py-3 text-sm text-[#2D4A63] placeholder:text-[#5A8EB8] focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all leading-relaxed overflow-hidden"
               disabled={isStreaming}
             />
             {isStreaming ? (
@@ -288,7 +288,7 @@ function AskPageInner() {
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="w-10 h-10 flex items-center justify-center bg-[#4a7c59] text-white rounded-full disabled:opacity-40 transition-opacity shrink-0 mb-0.5"
+                className="w-10 h-10 flex items-center justify-center bg-[#2E7FD4] text-white rounded-full disabled:opacity-45 transition-opacity shrink-0 mb-0.5 hover:bg-[#1A5FA8]"
               >
                 <Send size={16} />
               </button>
@@ -319,7 +319,7 @@ function AssistantText({ content }: { content: string }) {
         if (numberedMatch) {
           return (
             <div key={i} className="flex gap-2">
-              <span className="text-[#4a7c59] font-medium shrink-0 min-w-[1.2rem] text-right">
+              <span className="text-[#2E7FD4] font-medium shrink-0 min-w-[1.2rem] text-right">
                 {numberedMatch[1]}.
               </span>
               <span>{renderInlineBold(numberedMatch[2])}</span>
@@ -331,7 +331,7 @@ function AssistantText({ content }: { content: string }) {
         if (line.startsWith("- ") || line.startsWith("• ")) {
           return (
             <div key={i} className="flex gap-1.5">
-              <span className="text-[#4a7c59] mt-0.5 shrink-0">•</span>
+              <span className="text-[#2E7FD4] mt-0.5 shrink-0">•</span>
               <span>{renderInlineBold(line.slice(2))}</span>
             </div>
           );
