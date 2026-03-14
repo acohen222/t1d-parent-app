@@ -133,44 +133,43 @@ export default function DashboardPage() {
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #fff 0%, transparent 70%)" }} />
         <div className="absolute bottom-0 -left-6 w-28 h-28 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #56CCF2 0%, transparent 70%)" }} />
 
-        <div className="max-w-md mx-auto flex items-start justify-between relative z-10">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              {/* Logo */}
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-md overflow-hidden">
-                <Image
-                  src="/sugarwise_logo.png"
-                  alt="SugarWise"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              {/* Brand wordmark */}
-              <span
-                className="font-extrabold text-base tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                <span className="text-[#A8E6FF]">Sugar</span><span className="text-white">Wise</span>
-              </span>
-            </div>
-            <h1
-              className="text-xl font-extrabold leading-snug"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {greeting}{profile.name ? `, ${profile.name}'s family` : ""}.
-            </h1>
-            <p className="text-white/75 text-sm mt-0.5" style={{ fontFamily: "var(--font-body)" }}>
-              You&apos;re doing great — one moment at a time.
-            </p>
-          </div>
+        {/* Settings button top-right */}
+        <div className="max-w-md mx-auto flex justify-end relative z-10 mb-2">
           <Link
             href="/profile/setup"
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors mt-1"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors"
             aria-label="Profile settings"
           >
             <Settings size={17} />
           </Link>
+        </div>
+
+        {/* Centered logo + brand */}
+        <div className="max-w-md mx-auto flex flex-col items-center relative z-10">
+          <div className="w-24 h-24 rounded-2xl bg-white flex items-center justify-center shadow-xl overflow-hidden mb-3">
+            <Image
+              src="/sugarwise_logo.png"
+              alt="SugarWise"
+              width={96}
+              height={96}
+              className="object-contain"
+            />
+          </div>
+          <span
+            className="font-extrabold text-2xl tracking-tight mb-3"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            <span className="text-[#A8E6FF]">Sugar</span><span className="text-white">Wise</span>
+          </span>
+          <h1
+            className="text-xl font-extrabold leading-snug text-center"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {greeting}{profile.name ? `, ${profile.name}'s family` : ""}.
+          </h1>
+          <p className="text-white/75 text-sm mt-0.5 text-center" style={{ fontFamily: "var(--font-body)" }}>
+            You&apos;re doing great — one moment at a time.
+          </p>
         </div>
 
         {recentCount > 0 && (
