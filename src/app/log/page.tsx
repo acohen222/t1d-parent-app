@@ -77,7 +77,7 @@ export default function LogPage() {
       headerRight={
         <button
           onClick={() => setShowForm((v) => !v)}
-          className="flex items-center gap-1.5 bg-[#4a7c59] text-white text-xs font-semibold rounded-full px-3 py-1.5"
+          className="flex items-center gap-1.5 bg-[#2E7FD4] text-white text-xs font-semibold rounded-full px-3 py-1.5"
         >
           <Plus size={14} />
           Add Event
@@ -87,7 +87,7 @@ export default function LogPage() {
       <div className="px-4 pt-4">
         {/* Add Event Form */}
         {showForm && (
-          <div className="bg-white border border-stone-200 rounded-2xl p-4 mb-5 shadow-sm">
+          <div className="bg-white border border-[#B8D4EE] rounded-xl p-4 mb-5 shadow-[0_2px_12px_rgba(26,95,168,0.08)]">
             <h3 className="font-semibold text-stone-700 mb-3 text-sm">New Event</h3>
 
             {/* Category picker */}
@@ -118,7 +118,7 @@ export default function LogPage() {
                 value={bloodSugar}
                 onChange={(e) => setBloodSugar(e.target.value)}
                 placeholder="e.g. 210"
-                className="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#4a7c59]"
+                className="w-full border border-[#B8D4EE] rounded-lg px-3 py-2 text-sm focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all"
               />
             </div>
 
@@ -132,7 +132,7 @@ export default function LogPage() {
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="What happened? (e.g. 'Big pasta dinner, more carbs than usual')"
                 rows={2}
-                className="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#4a7c59] resize-none"
+                className="w-full border border-[#B8D4EE] rounded-lg px-3 py-2 text-sm focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all resize-none"
               />
             </div>
 
@@ -140,7 +140,7 @@ export default function LogPage() {
               <button
                 onClick={handleAdd}
                 disabled={!note.trim()}
-                className="flex-1 bg-[#4a7c59] text-white font-semibold rounded-xl py-2.5 text-sm disabled:opacity-40"
+                className="flex-1 bg-[#2E7FD4] text-white font-bold rounded-[50px] py-2.5 text-sm disabled:opacity-45 hover:bg-[#1A5FA8] transition-colors"
               >
                 Save Event
               </button>
@@ -171,7 +171,7 @@ export default function LogPage() {
               return (
                 <div
                   key={event.id}
-                  className="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm"
+                  className="bg-white border border-[#B8D4EE] rounded-xl overflow-hidden shadow-[0_2px_12px_rgba(26,95,168,0.08)]"
                 >
                   <button
                     className="w-full flex items-center gap-3 px-4 py-3 text-left"

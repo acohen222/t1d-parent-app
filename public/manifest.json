@@ -1,11 +1,11 @@
 {
-  "name": "T1D Parent Copilot",
+  "name": "T1D Family Copilot",
   "short_name": "T1D Copilot",
-  "description": "A calm, supportive companion for parents managing Type 1 Diabetes",
+  "description": "Navigating T1D Together — a warm, supportive companion for families managing Type 1 Diabetes",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8f7f4",
-  "theme_color": "#4a7c59",
+  "background_color": "#E8F2FB",
+  "theme_color": "#1A5FA8",
   "orientation": "portrait",
   "icons": [
     {

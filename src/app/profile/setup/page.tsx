@@ -50,7 +50,7 @@ function Input({ value, onChange, placeholder, type = "text" }: {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full h-11 bg-stone-50 border border-stone-200 rounded-xl px-3.5 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-[#4a7c59] transition-colors"
+      className="w-full h-11 bg-[#E8F2FB] border border-[#B8D4EE] rounded-lg px-3.5 text-sm text-[#2D4A63] placeholder:text-[#5A8EB8] focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all"
     />
   );
 }
@@ -70,7 +70,7 @@ function NumberInput({ value, onChange, min, max, unit }: {
         onChange={(e) => onChange(Number(e.target.value))}
         min={min}
         max={max}
-        className="flex-1 h-11 bg-stone-50 border border-stone-200 rounded-xl px-3.5 text-sm text-stone-800 focus:outline-none focus:border-[#4a7c59] transition-colors"
+        className="flex-1 h-11 bg-[#E8F2FB] border border-[#B8D4EE] rounded-lg px-3.5 text-sm text-[#2D4A63] focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all"
       />
       {unit && <span className="text-xs text-stone-400 shrink-0">{unit}</span>}
     </div>
@@ -150,7 +150,7 @@ export default function ProfileSetupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f7f4] flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: "var(--color-frost)" }}>
       {/* Header */}
       <header className="bg-white border-b border-stone-100 px-4 pt-12 pb-4 safe-area-pt">
         <div className="max-w-md mx-auto flex items-center gap-3">
@@ -183,7 +183,7 @@ export default function ProfileSetupPage() {
               onClick={() => setActiveSection(id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                 activeSection === id
-                  ? "bg-[#4a7c59] text-white"
+                  ? "bg-[#1A5FA8] text-white"
                   : "bg-stone-100 text-stone-500 hover:bg-stone-200"
               }`}
             >
