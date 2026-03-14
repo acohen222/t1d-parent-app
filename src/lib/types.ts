@@ -34,6 +34,15 @@ export interface ChildProfile {
   lowTreatmentType: string;
   siteChangeDays: number;
   updatedAt: string;
+
+  // T1D decision-tree fields (Phase 1)
+  lowBGThreshold: number;          // mg/dL — treat-low trigger (mirrors lowThreshold)
+  lowTreatmentCarbs: number;       // grams of fast carbs (mirrors lowTreatmentGrams)
+  highBGThreshold: number;         // mg/dL — treat-high trigger (mirrors highThreshold)
+  correctionFactor?: number;       // mg/dL drop per 1 unit of insulin
+  insulinDelivery: 'pump' | 'MDI'; // how child receives insulin
+  glucagonType: 'nasal' | 'auto-injector' | 'kit' | 'none'; // emergency glucagon on hand
+  commonHighCauses: string[];      // parent-noted causes of highs, e.g. ['pump disconnect']
 }
 
 export interface CareGuide {

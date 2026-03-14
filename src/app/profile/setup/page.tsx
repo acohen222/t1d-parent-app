@@ -32,6 +32,14 @@ const DEFAULT_PROFILE: ChildProfile = {
   lowTreatmentType: "juice box",
   siteChangeDays: 3,
   updatedAt: "",
+  // T1D decision-tree fields
+  lowBGThreshold: 70,
+  lowTreatmentCarbs: 15,
+  highBGThreshold: 250,
+  correctionFactor: undefined,
+  insulinDelivery: "pump",
+  glucagonType: "none",
+  commonHighCauses: [],
 };
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
@@ -121,7 +129,14 @@ export default function ProfileSetupPage() {
       return;
     }
 
-    saveChildProfile({ ...form, updatedAt: new Date().toISOString() });
+    saveChildProfile({
+      ...form,
+      // Keep mirrored decision-tree fields in sync with their UI counterparts
+      lowBGThreshold: form.lowThreshold,
+      lowTreatmentCarbs: form.lowTreatmentGrams,
+      highBGThreshold: form.highThreshold,
+      updatedAt: new Date().toISOString(),
+    });
 
     // Also persist contact info into care guide structure
     const existingRaw = localStorage.getItem("t1d_care_guide");
@@ -249,6 +264,31 @@ export default function ProfileSetupPage() {
               <FieldLabel>Low treatment type</FieldLabel>
               <Input value={form.lowTreatmentType} onChange={(v) => set("lowTreatmentType", v)} placeholder="e.g. juice box, glucose tabs" />
             </div>
+            <div>
+              <FieldLabel>Correction factor (optional)</FieldLabel>
+              <div className="flex items-center gap-2">
+                <input
+                  type="number"
+                  value={form.correctionFactor ?? ""}
+                  onChange={(e) => set("correctionFactor", e.target.value ? Number(e.target.value) : undefined)}
+                  min={10}
+                  max={200}
+                  placeholder="e.g. 50"
+                  className="flex-1 h-11 bg-[#E8F2FB] border border-[#B8D4EE] rounded-lg px-3.5 text-sm text-[#2D4A63] placeholder:text-[#5A8EB8] focus:outline-none focus:shadow-[0_0_0_2px_#2E7FD4] focus:border-transparent transition-all"
+                />
+                <span className="text-xs text-stone-400 shrink-0">mg/dL per unit</span>
+              </div>
+              <p className="text-[11px] text-stone-400 mt-1">How much 1 unit lowers BG. From your care team&apos;s plan.</p>
+            </div>
+            <div>
+              <FieldLabel>Common high BG causes (optional)</FieldLabel>
+              <Input
+                value={form.commonHighCauses.join(", ")}
+                onChange={(v) => set("commonHighCauses", v.split(",").map((s) => s.trim()).filter(Boolean))}
+                placeholder="e.g. pump disconnect, delayed meal absorption"
+              />
+              <p className="text-[11px] text-stone-400 mt-1">Comma-separated. Shown as reminders in the High BG guide.</p>
+            </div>
           </div>
         )}
 
@@ -256,7 +296,26 @@ export default function ProfileSetupPage() {
         {activeSection === "devices" && (
           <div className="space-y-4">
             <div>
-              <FieldLabel>Insulin pump</FieldLabel>
+              <FieldLabel>Insulin delivery method</FieldLabel>
+              <div className="flex gap-2">
+                {(["pump", "MDI"] as const).map((opt) => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => set("insulinDelivery", opt)}
+                    className={`flex-1 h-11 rounded-lg text-sm font-semibold border-2 transition-all ${
+                      form.insulinDelivery === opt
+                        ? "bg-[#1A5FA8] border-[#1A5FA8] text-white"
+                        : "bg-[#E8F2FB] border-[#B8D4EE] text-[#2D4A63]"
+                    }`}
+                  >
+                    {opt === "pump" ? "Pump" : "Injections (MDI)"}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <FieldLabel>Insulin pump model</FieldLabel>
               <Input value={form.pumpType ?? ""} onChange={(v) => set("pumpType", v)} placeholder="e.g. Tandem t:slim X2, Omnipod 5" />
             </div>
             <div>
@@ -267,6 +326,33 @@ export default function ProfileSetupPage() {
               <FieldLabel>Pump site change interval</FieldLabel>
               <NumberInput value={form.siteChangeDays} onChange={(v) => set("siteChangeDays", v)} min={1} max={7} unit="days" />
               <p className="text-[11px] text-stone-400 mt-1">Used to remind you when a site might be aging</p>
+            </div>
+            <div>
+              <FieldLabel>Glucagon on hand</FieldLabel>
+              <div className="grid grid-cols-2 gap-2">
+                {(
+                  [
+                    { value: "nasal", label: "Nasal (Baqsimi)" },
+                    { value: "auto-injector", label: "Auto-injector" },
+                    { value: "kit", label: "Injection kit" },
+                    { value: "none", label: "None / unknown" },
+                  ] as const
+                ).map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => set("glucagonType", opt.value)}
+                    className={`h-11 rounded-lg text-xs font-semibold border-2 px-2 transition-all ${
+                      form.glucagonType === opt.value
+                        ? "bg-[#1A5FA8] border-[#1A5FA8] text-white"
+                        : "bg-[#E8F2FB] border-[#B8D4EE] text-[#2D4A63]"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-stone-400 mt-1">Shown in the Low BG emergency guide.</p>
             </div>
           </div>
         )}
