@@ -233,7 +233,7 @@ function AskPageInner() {
 
         {/* Message thread */}
         {messages.length > 0 && (
-          <div className="flex-1 px-4 pt-4 pb-2 flex flex-col gap-4">
+          <div className="flex-1 px-4 pt-4 pb-36 flex flex-col gap-4">
             {messages.map((msg, i) => (
               <div
                 key={i}
