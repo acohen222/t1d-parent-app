@@ -1,0 +1,23 @@
+<svg width="100%" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    
+  </defs>
+
+  <!-- Heart shape -->
+  <path d="M340 222&#10;    C340 222 276 188 268 153&#10;    C260 118 284 98 308 106&#10;    C320 110 331 121 340 132&#10;    C349 121 360 110 372 106&#10;    C396 98 420 118 412 153&#10;    C404 188 340 222 340 222Z" fill="#2E7FD4" opacity="0.93" style="fill:rgb(46, 127, 212);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.93;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Dexcom-style CGM curve -->
+  <path d="M284,157 C292,157 296,143 304,143 C312,143 316,168 324,168 C332,168 336,150 340,146 C344,142 348,168 356,168 C364,168 368,143 376,143 C384,143 388,157 396,157" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(0, 0, 0);stroke-width:3.2px;stroke-linecap:round;stroke-linejoin:round;opacity:0.95;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Family dots -->
+  <circle cx="316" cy="93" r="9" fill="#1A5FA8" opacity="0.85" style="fill:rgb(26, 95, 168);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.85;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="340" cy="85" r="12" fill="#2E7FD4" opacity="0.95" style="fill:rgb(46, 127, 212);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.95;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="364" cy="93" r="9" fill="#1A5FA8" opacity="0.85" style="fill:rgb(26, 95, 168);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.85;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Wordmark -->
+  <text x="340" y="308" text-anchor="middle" style="fill:rgb(46, 127, 212);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Nunito, &quot;Anthropic Sans&quot;, sans-serif;font-size:42px;font-weight:900;text-anchor:middle;dominant-baseline:auto">T1D Family Copilot</text>
+
+  <!-- Tagline -->
+  <text x="340" y="340" text-anchor="middle" style="fill:rgb(90, 142, 184);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Nunito, &quot;Anthropic Sans&quot;, sans-serif;font-size:13.5px;font-weight:700;text-anchor:middle;dominant-baseline:auto">NAVIGATING T1D TOGETHER</text>
+
+</svg>
