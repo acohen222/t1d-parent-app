@@ -12,11 +12,12 @@ interface Message {
 }
 
 const STARTER_PROMPTS = [
-  "Why might my child's blood sugar be high after breakfast?",
-  "What could cause a sudden drop in blood sugar during the night?",
-  "Why is blood sugar high even though we gave insulin?",
-  "What causes blood sugar to spike during exercise?",
+  "Why might blood sugar be high when my child wakes up?",
+  "Is it normal for blood sugar to be all over the place?",
+  "Why does blood sugar drop during or after exercise?",
   "Why is blood sugar hard to control when my child is sick?",
+  "How do I explain T1D to my child's school?",
+  "I feel like I'm doing everything right and the numbers are still a mess. Why?",
 ];
 
 function AskPageInner() {
