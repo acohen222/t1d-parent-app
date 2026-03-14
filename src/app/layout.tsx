@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "T1D Family Copilot",
-  description: "Navigating T1D Together — a warm, supportive companion for families managing Type 1 Diabetes",
+  title: "SugarWise — T1D Parent Companion",
+  description: "SugarWise: A warm, supportive companion for families navigating Type 1 Diabetes — one moment at a time.",
   manifest: "/manifest.json",
 };
 

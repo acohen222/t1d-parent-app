@@ -1,7 +1,7 @@
 {
-  "name": "T1D Family Copilot",
-  "short_name": "T1D Copilot",
-  "description": "Navigating T1D Together — a warm, supportive companion for families managing Type 1 Diabetes",
+  "name": "SugarWise",
+  "short_name": "SugarWise",
+  "description": "SugarWise — T1D Parent Companion App. Navigating Type 1 Diabetes together.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#E8F2FB",

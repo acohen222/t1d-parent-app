@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  /* ── T1D Family Copilot Brand Palette ── */
+  /* ── SugarWise Brand Palette ── */
   --color-midnight:    #1A3A5C;
   --color-t1d-blue:    #1A5FA8;
   --color-dexcom-blue: #2E7FD4;
@@ -11,6 +11,12 @@
   --color-frost:       #E8F2FB;
   --color-body-text:   #2D4A63;
   --color-muted:       #5A8EB8;
+
+  /* Gradients */
+  --gradient-hero:    linear-gradient(150deg, #56CCF2 0%, #2E7FD4 38%, #1A5FA8 70%, #1A3A5C 100%);
+  --gradient-header:  linear-gradient(135deg, #4FC3F7 0%, #2E7FD4 45%, #1A5FA8 100%);
+  --gradient-card:    linear-gradient(135deg, #E8F2FB 0%, #D0E8F8 100%);
+  --gradient-active:  linear-gradient(90deg, #4FC3F7, #1A5FA8);
 
   /* Glucose status */
   --glucose-in-range-bg:   #E8F2FB;  --glucose-in-range-text:  #1A5FA8;
